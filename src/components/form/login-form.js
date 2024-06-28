@@ -44,8 +44,8 @@ export default class LogIn extends OmniElement {
           background-size: cover;
           background-position: center;
           overflow: hidden !important;
-          min-height: 55.6vh;
-          min-width: 70.6vh;
+          min-height: 52.6vh;
+          min-width: 75.6vh;
         }
         .hg::after {
           content: "";
@@ -65,6 +65,13 @@ export default class LogIn extends OmniElement {
         }
         .pt-8 {
           padding-top: 70px !important;
+        }
+        .loginform{
+          padding-top: 90px;
+        }
+        .font-size {
+          font-size: 29px;
+          text-shadow: #4196db 1px 0 10px;
         }
       `,
     ];
@@ -106,7 +113,7 @@ export default class LogIn extends OmniElement {
               </header>
               <div class="is-flex">
               
-            <div>
+            <div class= "loginform">
               <div class="input-container">
                 <p class="control has-icons-left ">
                 
@@ -199,7 +206,7 @@ export default class LogIn extends OmniElement {
                 </button>
               </div>
               </div>
-              <div class="image">bubu</div> 
+              <div class="image"></div> 
             </div>
             </div>
           </div>
@@ -217,7 +224,6 @@ export default class LogIn extends OmniElement {
         const user = registeredUsers.find(u => (u.username === this.username || u.email === this.username) && u.password === this.password);
     
         if (user) {
-          // Successful login, navigate to dashboard or desired route
           Router.go("/dashboard");
           this.authError = '';
         } else {
