@@ -78,30 +78,49 @@ export default class LogIn extends OmniElement {
   }
 
 
+handleUsernameInput(e) {
+  this.username = e.target.value.trim();
+  this.authError = '';
+  
+  const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
+  const alphanumericRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9#@!$]+$/;
 
-  handleUsernameInput(e) {
-    this.username = e.target.value.trim();
-    if (!this.username) {
-      this.usernameError = "Enter email or username";
-    } else if (!/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(this.username) && !/^[a-zA-Z0-9]+$/.test(this.username)) {
-      this.usernameError = "Enter a valid username";
-    } else {
-      this.usernameError = '';
-    }
-    this.requestUpdate();
+
+  switch (true) {
+      case !this.username:
+          this.usernameError = "Enter email or username";
+          break;
+      case !emailRegex.test(this.username) && !alphanumericRegex.test(this.username):
+          this.usernameError = "Enter a valid username";
+          break;
+      default:
+          this.usernameError = '';
+          break;
   }
+  
+  this.requestUpdate();
+}
 
   handlePasswordInput(e) {
     this.password = e.target.value.trim();
-    if (!this.password) {
-      this.passwordError = "Enter password";
-    } else if  (!/^([a-zA-Z0-9]*[!@#$]+[a-zA-Z0-9]*)$/.test(this.password)) {
-      this.passwordError = "Enter a valid password";
-    } else {
-      this.passwordError = '';
+    this.authError = '';
+    
+    switch (true) {
+        case !this.password:
+            this.passwordError = "Enter password";
+            break;
+        case !/^([a-zA-Z0-9]*[!@#$]+[a-zA-Z0-9]*)$/.test(this.password):
+            this.passwordError = "Enter a valid password";
+            break;
+        default:
+            this.passwordError = '';
+            break;
     }
+    
     this.requestUpdate();
-  }
+}
+
+
     render() {
         return html`
     <omni-style>
@@ -119,9 +138,7 @@ export default class LogIn extends OmniElement {
                 
                   <input
                     id="signin-username"
-                    class="${this.usernameError
-                      ? "input error-border"
-                      : "input"}"
+                   class="${this.usernameError || this.authError ? "input error-border" : "input"}"
                     name="signin-username"
                     type="text"
                     placeholder="Email or Username" @input=${(e) =>this.handleUsernameInput(e)}
@@ -152,9 +169,7 @@ export default class LogIn extends OmniElement {
                 <p class="control has-icons-left">
                   <input
                     id="signin-password"
-                    class="${this.passwordError
-                      ? "input error-border"
-                      : "input"}"
+                     class="${this.passwordError || this.authError ? "input error-border" : "input"}"
                     name="signin-password"
                     type="password"
                     placeholder="Password"
@@ -217,14 +232,10 @@ export default class LogIn extends OmniElement {
 
 
       doSignIn() {
-        // Fetch registered users from localStorage
         const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
-    
-        // Check if the username and password match a registered user
         const user = registeredUsers.find(u => (u.username === this.username || u.email === this.username) && u.password === this.password);
-    
         if (user) {
-          Router.go("/dashboard");
+          Router.go("/home");
           this.authError = '';
         } else {
           this.authError = "Either the username or password is invalid.";

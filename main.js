@@ -12,18 +12,18 @@ export default class Main extends OmniElement {
     super.firstUpdated();
 
     const routes = [
-      // {
-      //   path: "/",
-      //   redirect: "/register-form",
-      // },
-      // {
-      //   path: "/Register-form",
-      //   component: "register-form",
-      // },
       {
         path: "/",
-        redirect: "/login-form",
+        redirect: "/register-form",
       },
+      {
+        path: "/Register-form",
+        component: "register-form",
+      },
+      // {
+      //   path: "/",
+      //   redirect: "/login-form",
+      // },
     
       {
         path: "/login-form",
