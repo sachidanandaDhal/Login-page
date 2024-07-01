@@ -8,17 +8,16 @@ export default class LogIn extends OmniElement {
     username: { type: String },
     password: { type: String },
     email: { type: String },
-    authError: { type: String }
+    authError: { type: String },
   };
 
   constructor() {
     super();
-    this.username = '';
-    this.password = '';
-    this.email = '';
-    this.authError = '';
+    this.username = "";
+    this.password = "";
+    this.email = "";
+    this.authError = "";
   }
-
 
   static get styles() {
     return [
@@ -66,7 +65,7 @@ export default class LogIn extends OmniElement {
         .pt-8 {
           padding-top: 70px !important;
         }
-        .loginform{
+        .loginform {
           padding-top: 90px;
         }
         .font-size {
@@ -77,173 +76,179 @@ export default class LogIn extends OmniElement {
     ];
   }
 
+  handleUsernameInput(e) {
+    this.username = e.target.value.trim();
+    this.authError = "";
 
-handleUsernameInput(e) {
-  this.username = e.target.value.trim();
-  this.authError = '';
-  
-  const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
-  const alphanumericRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9#@!$]+$/;
+    const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
+    const alphanumericRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9#@!$]+$/;
 
-
-  switch (true) {
+    switch (true) {
       case !this.username:
-          this.usernameError = "Enter email or username";
-          break;
-      case !emailRegex.test(this.username) && !alphanumericRegex.test(this.username):
-          this.usernameError = "Enter a valid username";
-          break;
+        this.usernameError = "Enter email or username";
+        break;
+      case !emailRegex.test(this.username) &&
+        !alphanumericRegex.test(this.username):
+        this.usernameError = "Enter a valid username";
+        break;
       default:
-          this.usernameError = '';
-          break;
+        this.usernameError = "";
+        break;
+    }
+
+    this.requestUpdate();
   }
-  
-  this.requestUpdate();
-}
 
   handlePasswordInput(e) {
     this.password = e.target.value.trim();
-    this.authError = '';
-    
+    this.authError = "";
+
     switch (true) {
-        case !this.password:
-            this.passwordError = "Enter password";
-            break;
-        case !/^([a-zA-Z0-9]*[!@#$]+[a-zA-Z0-9]*)$/.test(this.password):
-            this.passwordError = "Enter a valid password";
-            break;
-        default:
-            this.passwordError = '';
-            break;
+      case !this.password:
+        this.passwordError = "Enter password";
+        break;
+      case !/^([a-zA-Z0-9]*[!@#$]+[a-zA-Z0-9]*)$/.test(this.password):
+        this.passwordError = "Enter a valid password";
+        break;
+      default:
+        this.passwordError = "";
+        break;
     }
-    
+
     this.requestUpdate();
-}
+  }
 
-
-    render() {
-        return html`
-    <omni-style>
+  render() {
+    return html`
+      <omni-style>
         <div class="columns is-centered is-vcentered hg">
           <div class="column is-narrow pt-8">
-            <div class="box has-text-centered is-flex is-justify-content-space-between is-flex-direction-column pd-7">
+            <div
+              class="box has-text-centered is-flex is-justify-content-space-between is-flex-direction-column pd-7"
+            >
               <header class="title ">
-                <p class="font-size white">LOG IN </p>
+                <p class="font-size white">LOG IN</p>
               </header>
               <div class="is-flex">
-              
-            <div class= "loginform">
-              <div class="input-container">
-                <p class="control has-icons-left ">
-                
-                  <input
-                    id="signin-username"
-                   class="${this.usernameError || this.authError ? "input error-border" : "input"}"
-                    name="signin-username"
-                    type="text"
-                    placeholder="Email or Username" @input=${(e) =>this.handleUsernameInput(e)}
-                  />
-                  <span class="icon is-small is-left">
-                    <omni-icon
-                      class="is-size-1"
-                      style="fill:var(--color-shark)"
-                      icon-id="omni:informative:user"
-                    ></omni-icon>
-                  </span>
-                </p>
-                ${this.usernameError
-                  ? html` <div class="is-flex">
-                      <omni-icon
-                        class="mt-2 ml-2  error-icon "
-                        icon-id="omni:informative:error"
-                        aria-label="icon"
-                        role="img"
-                      ></omni-icon>
-                       <span class="pt-2 pl-1  has-text-grey is-size-6"
-                        >${this.usernameError}</span
-                      >
-                    </div>`
-                  : ""}
+                <div class="loginform">
+                  <div class="input-container">
+                    <p class="control has-icons-left ">
+                      <input
+                        id="signin-username"
+                        class="${this.usernameError || this.authError
+                          ? "input error-border"
+                          : "input"}"
+                        name="signin-username"
+                        type="text"
+                        placeholder="Email or Username"
+                        @input=${(e) => this.handleUsernameInput(e)}
+                      />
+                      <span class="icon is-small is-left">
+                        <omni-icon
+                          class="is-size-1"
+                          style="fill:var(--color-shark)"
+                          icon-id="omni:informative:user"
+                        ></omni-icon>
+                      </span>
+                    </p>
+                    ${this.usernameError
+                      ? html` <div class="is-flex">
+                          <omni-icon
+                            class="mt-2 ml-2  error-icon "
+                            icon-id="omni:informative:error"
+                            aria-label="icon"
+                            role="img"
+                          ></omni-icon>
+                          <span class="pt-2 pl-1  has-text-grey is-size-6"
+                            >${this.usernameError}</span
+                          >
+                        </div>`
+                      : ""}
+                  </div>
+                  <div class="input-container pt-5">
+                    <p class="control has-icons-left">
+                      <input
+                        id="signin-password"
+                        class="${this.passwordError || this.authError
+                          ? "input error-border"
+                          : "input"}"
+                        name="signin-password"
+                        type="password"
+                        placeholder="Password"
+                        @input="${(e) => this.handlePasswordInput(e)}"
+                      />
+                      <span class="icon is-small is-left">
+                        <omni-icon
+                          class="is-size-1"
+                          style="fill:var(--color-shark)"
+                          icon-id="omni:interactive:lock"
+                        ></omni-icon>
+                      </span>
+                    </p>
+                    ${this.passwordError
+                      ? html` <div class="is-flex">
+                          <omni-icon
+                            class="mt-2 ml-2  error-icon "
+                            icon-id="omni:informative:error"
+                            aria-label="icon"
+                            role="img"
+                          ></omni-icon>
+                          <span class="pt-2 pl-1  has-text-grey is-size-6"
+                            >${this.passwordError}</span
+                          >
+                        </div>`
+                      : ""}
+                    ${this.authError
+                      ? html` <div class="is-flex">
+                          <omni-icon
+                            class="mt-2 ml-2  error-icon "
+                            icon-id="omni:informative:error"
+                            aria-label="icon"
+                            role="img"
+                          ></omni-icon>
+                          <span class="pt-2 pl-1  has-text-grey is-size-6"
+                            >${this.authError}</span
+                          >
+                        </div>`
+                      : ""}
+                  </div>
+
+                  <div class="pt-5">
+                    <button
+                      id="signin-submit"
+                      class="button is-link width"
+                      @click=${this.doSignIn}
+                    >
+                      LogIn
+                    </button>
+                  </div>
+                </div>
+                <div class="image"></div>
               </div>
-              <div class="input-container pt-5">
-                <p class="control has-icons-left">
-                  <input
-                    id="signin-password"
-                     class="${this.passwordError || this.authError ? "input error-border" : "input"}"
-                    name="signin-password"
-                    type="password"
-                    placeholder="Password"
-                    @input="${(e) => this.handlePasswordInput(e)}"
-                  />
-                  <span class="icon is-small is-left">
-                    <omni-icon
-                      class="is-size-1"
-                      style="fill:var(--color-shark)"
-                      icon-id="omni:interactive:lock"
-                    ></omni-icon>
-                  </span>
-                </p>
-                ${this.passwordError
-                  ? html` <div class="is-flex">
-                      <omni-icon
-                        class="mt-2 ml-2  error-icon "
-                        icon-id="omni:informative:error"
-                        aria-label="icon"
-                        role="img"
-                      ></omni-icon>
-                       <span class="pt-2 pl-1  has-text-grey is-size-6"
-                        >${this.passwordError}</span
-                      >
-                    </div>`
-                  : ""}
-                  ${this.authError
-                ? html` <div class="is-flex">
-                      <omni-icon
-                        class="mt-2 ml-2  error-icon "
-                        icon-id="omni:informative:error"
-                        aria-label="icon"
-                        role="img"
-                      ></omni-icon>
-                       <span class="pt-2 pl-1  has-text-grey is-size-6"
-                        >${this.authError}</span
-                      >
-                    </div>`
-                : ""}
-              </div>
-              
-              <div class="pt-5">
-                <button
-                  id="signin-submit"
-                  class="button is-link width"
-                  @click=${this.doSignIn}
-                >
-                  LogIn
-                </button>
-              </div>
-             
-              </div>
-              <div class="image"></div> 
-            </div>
-            <p class="is-flex size-1">Not registered? <a href="/register"> Create an account</a></p>
+              <p class="is-flex size-1">
+                Not registered? <a href="/register"> Create an account</a>
+              </p>
             </div>
           </div>
-          
         </div>
       </omni-style>
-        `;
-      }
+    `;
+  }
 
-
-      doSignIn() {
-        const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
-        const user = registeredUsers.find(u => (u.username === this.username || u.email === this.username) && u.password === this.password);
-        if (user) {
-          Router.go("/home");
-          this.authError = '';
-        } else {
-          this.authError = "Either the username or password is invalid.";
-        }
-      }
-
+  doSignIn() {
+    const registeredUsers =
+      JSON.parse(localStorage.getItem("registeredUsers")) || [];
+    const user = registeredUsers.find(
+      (u) =>
+        (u.username === this.username || u.email === this.username) &&
+        u.password === this.password
+    );
+    if (user) {
+      Router.go("/home");
+      this.authError = "";
+    } else {
+      this.authError = "Either the username or password is invalid.";
+    }
+  }
 }
 customElements.define("login-form", LogIn);
