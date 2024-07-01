@@ -211,7 +211,7 @@ handleUsernameInput(e) {
                 : ""}
               </div>
               
-              <div class="pt-4">
+              <div class="pt-5">
                 <button
                   id="signin-submit"
                   class="button is-link width"
@@ -220,11 +220,14 @@ handleUsernameInput(e) {
                   LogIn
                 </button>
               </div>
+             
               </div>
               <div class="image"></div> 
             </div>
+            <p class="is-flex size-1">Not registered? <a href="/register"> Create an account</a></p>
             </div>
           </div>
+          
         </div>
       </omni-style>
         `;

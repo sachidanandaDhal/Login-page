@@ -1,0 +1,50 @@
+import { OmniElement, OmniStyleElement, css, html, nothing } from "omni-ui";
+import { Router } from "@vaadin/router";
+OmniElement.register();
+OmniStyleElement.register();
+
+export default class Home extends OmniElement {
+    static get styles() {
+        return [
+          super.styles,
+          css`
+            :host {
+              /* Customizable CSS Variables and their defaults */
+              --omni-app-layout-header-height: 50px;
+              --omni-app-layout-drawer-width: 180px;
+              --omni-app-layout-drawer-closed-width: 0px;
+              --omni-app-layout-end-drawer-width: 300px;
+              --omni-app-layout-bg: #f1f5fa;
+              --omni-app-layout-header-bg: #fff;
+              --omni-app-layout-drawer-bg: #fff;
+              --omni-app-layout-end-drawer-bg: #fff;
+    
+              /* Variables useful for nesting layouts */
+              --omni-app-layout-height: 100vh;
+              --omni-app-layout-top: 0px;
+              --omni-app-layout-left: 0px;
+              --omni-app-layout-drawer-z-index: 32;
+              --omni-app-layout-end-drawer-z-index: 34;
+              --omni-app-layout-header-z-index: 36;
+            }
+            
+          `,
+        ];
+      }
+
+  render() {
+    return html`
+      <omni-style>
+        <omni-app-layout>
+          <h1>Main (Default Slot)</h1>
+          <header slot="header">
+            <h1>Header</h1>
+        </header>
+          <!-- <nav slot="drawer" class="has-text-white">Nav</nav>
+          <aside slot="end-drawer">Aside</aside> -->
+        </omni-app-layout>
+      </omni-style>
+    `;
+  }
+}
+customElements.define("home-page", Home);

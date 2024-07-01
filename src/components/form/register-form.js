@@ -89,27 +89,7 @@ export default class Register extends OmniElement {
     ];
   }
 
-  // handleUsernameChange(e) {
-  //   this.username = e.target.value;
-  //   const alphanumericRegex = /^[a-zA-Z0-9#@!$]+$/;
-  //   const hasAlphabet = /[a-zA-Z]/.test(this.username);
-  //   const hasNumber = /\d/.test(this.username);
 
-  //   if (!this.username){
-  //       this.errors.username = "Username is required";
-  //   }
-  //   else if (this.username.length < 7) {
-  //     this.errors.username = 'Username should be at least 7 characters long';
-  //   } else if (!alphanumericRegex.test(this.username)) {
-  //     this.errors.username = 'The username should only contain alphanumeric characters or #@!$';
-  //   } else if (!hasAlphabet || !hasNumber) {
-  //     this.errors.username = 'The username should have the combination of alphabets and numbers';
-  //   } else {
-  //     this.errors.username = '';
-  //   }
-  //   this.checkFormValidity();
-  //   this.requestUpdate();
-  // }
   handleUsernameChange(e) {
     this.username = e.target.value;
     const alphanumericRegex = /^[a-zA-Z0-9#@!$]+$/;
@@ -255,26 +235,25 @@ export default class Register extends OmniElement {
         JSON.parse(localStorage.getItem("registeredUsers")) || [];
       registeredUsers.push(newUser);
       localStorage.setItem("registeredUsers", JSON.stringify(registeredUsers));
-      // Router.go("/login-form");
       this.openOmniToastElModal();
       this.requestUpdate();
 
     }
   }
   openOmniToastElModal(){
-    const toast = this.shadowRoot.querySelector('#toast');
-    toast.openModal();
+    const banner = this.shadowRoot.querySelector('#banner');
+    banner.openModal();
     setTimeout(() => {
       this.closeForm();
-    }, 1500);
+    }, 2000);
     this.requestUpdate();
   }
   closeForm() {
-    Router.go('/login-form');
+    Router.go('/login');
   }
 
   render() {
-    const Message = "You have successfully registered!";
+    
     return html`
       <omni-style>
         <div class="columns is-centered is-vcentered hg">
@@ -285,6 +264,7 @@ export default class Register extends OmniElement {
               <header class="title ">
                 <p class="font-size white">Create an Account</p>
               </header>
+              
               <div class="is-flex">
                 <div class="image"></div>
                 <div class="pl-5 ml-5">
@@ -440,16 +420,19 @@ export default class Register extends OmniElement {
                     </button>
                   </div>
                 </div>
+                
               </div>
+              <p class="is-flex">Already Have account?<a href="/login"> Login</a></p>
             </div>
           </div>
         </div>
         <omni-dialog
-        id="toast"
-        modalType="toast"
+        id="banner"
+        modalType="banner"
         modalStyle="success"
-        toastTimeOut="2000">
-        <p slot="content">${Message}</p>
+        toastTimeOut="2000"
+        @close-dialog="${this.closeForm}">
+        <p slot="content">You have successfully registered!</p>
       </omni-dialog>
       </omni-style>
     `;

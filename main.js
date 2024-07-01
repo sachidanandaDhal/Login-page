@@ -2,6 +2,7 @@ import { Router } from "@vaadin/router";
 
 import "./src/components/form/login-form.js"
 import "./src/components/form/register-form.js"
+import "./src/components/form/home-page.js"
 
 import { OmniElement, html } from "omni-ui";
 export default class Main extends OmniElement {
@@ -17,17 +18,16 @@ export default class Main extends OmniElement {
         redirect: "/register-form",
       },
       {
-        path: "/Register-form",
+        path: "/register",
         component: "register-form",
       },
-      // {
-      //   path: "/",
-      //   redirect: "/login-form",
-      // },
-    
       {
-        path: "/login-form",
+        path: "/login",
         component: "login-form",
+      },
+      {
+        path: "/home",
+        component: "home-page",
       },
      
     ];
