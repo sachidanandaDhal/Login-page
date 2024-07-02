@@ -422,7 +422,7 @@ export default class Register extends OmniElement {
                 </div>
                 
               </div>
-              <p class="is-flex">Already Have account?<a href="/login"> Login</a></p>
+              <p class="is-flex">Already have an account?<a href="/login"> Login</a></p>
             </div>
           </div>
         </div>

@@ -226,7 +226,7 @@ export default class LogIn extends OmniElement {
                 <div class="image"></div>
               </div>
               <p class="is-flex size-1">
-                Not registered? <a href="/register"> Create an account</a>
+              Not registered? <a href="/register"> Create an account</a>
               </p>
             </div>
           </div>

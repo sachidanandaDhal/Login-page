@@ -31,6 +31,20 @@ export default class Home extends OmniElement {
     ];
   }
 
+  handlelogout() {
+    this.openOmniDialogElModal();
+  }
+  openOmniDialogElModal() {
+    const modal = this.shadowRoot.querySelector("#modal");
+    modal.openModal();
+  }
+
+  onSubmit() {
+    const modal = this.shadowRoot.querySelector("#modal");
+    modal.closeModal();
+    Router.go("/login");
+  }
+
   render() {
     return html`
       <omni-style>
@@ -40,9 +54,32 @@ export default class Home extends OmniElement {
               <button class="button is-primary">Home</button>
               <button class="button is-primary">About</button>
               <div slot="center-end" class="pr-4">
-                <button slot="center-end" class="button is-outlined is-danger ">
-               <omni-icon icon-id="icon:interactive:unlock"></omni-icon> <span>Logout</span>
+                <button
+                  slot="center-end"
+                  class="button is-outlined is-danger "
+                  @click="${() => this.handlelogout()}"
+                >
+                  <omni-icon icon-id="icon:interactive:unlock"></omni-icon>
+                  <span>Logout</span>
                 </button>
+                <omni-dialog
+                  id="modal"
+                  modalType="modal"
+                  modalStyle="error"
+                  modalTitle=" User Confirmation"
+                >
+                  >
+                  <p slot="content">
+                    Are you sure you want to log out of this account?
+                  </p>
+                  <button
+                    class="button is-outlined is-medium is-danger"
+                    slot="button"
+                    @click=${this.onSubmit}
+                  >
+                    Logout
+                  </button>
+                </omni-dialog>
               </div>
             </omni-toolbar>
           </header>
