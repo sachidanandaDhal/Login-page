@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@vaadin/router": "^1.7.5",
+    "bulma": "^1.0.1",
     "express": "^4.19.2",
     "lit": "^2.0.2",
     "omni-ui": "bitbucket:annalect/omni-ui#semver:~7.21.2"

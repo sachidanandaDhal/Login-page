@@ -198,19 +198,6 @@ export default class LogIn extends OmniElement {
                           >
                         </div>`
                       : ""}
-                    ${this.authError
-                      ? html` <div class="is-flex">
-                          <omni-icon
-                            class="mt-2 ml-2  error-icon "
-                            icon-id="omni:informative:error"
-                            aria-label="icon"
-                            role="img"
-                          ></omni-icon>
-                          <span class="pt-2 pl-1  has-text-grey is-size-6"
-                            >${this.authError}</span
-                          >
-                        </div>`
-                      : ""}
                   </div>
 
                   <div class="pt-5">
@@ -231,8 +218,22 @@ export default class LogIn extends OmniElement {
             </div>
           </div>
         </div>
+
+        <omni-dialog
+        id="banner"
+        modalType="toast"
+        modalStyle="error"
+        toastTimeOut="5000">
+        <p slot="content">Either the username or password is invalid.</p>
+      </omni-dialog>
       </omni-style>
     `;
+  }
+
+  openOmniToastElModal(){
+    const banner = this.shadowRoot.querySelector('#banner');
+    banner.openModal();
+    this.requestUpdate();
   }
 
   doSignIn() {
@@ -247,7 +248,8 @@ export default class LogIn extends OmniElement {
       Router.go("/home");
       this.authError = "";
     } else {
-      this.authError = "Either the username or password is invalid.";
+      this.openOmniToastElModal();
+      this.authError = ".";
     }
   }
 }

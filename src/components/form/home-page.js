@@ -62,27 +62,30 @@ export default class Home extends OmniElement {
                   <omni-icon icon-id="icon:interactive:unlock"></omni-icon>
                   <span>Logout</span>
                 </button>
-                <omni-dialog
-                  id="modal"
-                  modalType="modal"
-                  modalStyle="error"
-                  modalTitle=" User Confirmation"
-                >
-                  >
-                  <p slot="content">
-                    Are you sure you want to log out of this account?
-                  </p>
-                  <button
-                    class="button is-outlined is-medium is-danger"
-                    slot="button"
-                    @click=${this.onSubmit}
-                  >
-                    Logout
-                  </button>
-                </omni-dialog>
               </div>
             </omni-toolbar>
           </header>
+          <div  class="pt-1 pl-1">
+            <h1>bubu</h1>
+          </div>
+          <omni-dialog
+            id="modal"
+            modalType="modal"
+            modalStyle="error"
+            modalTitle=" User Confirmation"
+          >
+            >
+            <p slot="content">
+              Are you sure you want to log out of this account?
+            </p>
+            <button
+              class="button is-outlined is-medium is-danger"
+              slot="button"
+              @click=${this.onSubmit}
+            >
+              Logout
+            </button>
+          </omni-dialog>
         </omni-app-layout>
       </omni-style>
     `;

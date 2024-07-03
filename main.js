@@ -15,7 +15,7 @@ export default class Main extends OmniElement {
     const routes = [
       {
         path: "/",
-        redirect: "/register-form",
+        redirect: "/register",
       },
       {
         path: "/register",

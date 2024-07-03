@@ -241,11 +241,11 @@ export default class Register extends OmniElement {
     }
   }
   openOmniToastElModal(){
-    const banner = this.shadowRoot.querySelector('#banner');
+    const banner = this.shadowRoot.querySelector('#toast');
     banner.openModal();
     setTimeout(() => {
       this.closeForm();
-    }, 2000);
+    }, 3000);
     this.requestUpdate();
   }
   closeForm() {
@@ -312,13 +312,16 @@ export default class Register extends OmniElement {
                       value="${this.email}"
                       @input="${(e) => this.handleEmailChange(e)}"
                     />
-                    <span class="icon is-small is-left">
+                    <!-- <span class="icon is-small is-left">
                     <omni-icon
                       class="is-size-1"
                       style="fill:var(--color-shark)"
                       icon-id="omni:informative:community"
                     ></omni-icon>
-                  </span>
+                  </span> -->
+                  <span class="icon is-small is-left">
+        <i class="fas fa-info-circle"></i>
+      </span>
                 </p>
                     <div class="is-flex">
                       ${this.errors.email
@@ -427,10 +430,10 @@ export default class Register extends OmniElement {
           </div>
         </div>
         <omni-dialog
-        id="banner"
-        modalType="banner"
+        id="toast"
+        modalType="toast"
         modalStyle="success"
-        toastTimeOut="2000"
+        .toastTimeOut=${3000}
         @close-dialog="${this.closeForm}">
         <p slot="content">You have successfully registered!</p>
       </omni-dialog>
