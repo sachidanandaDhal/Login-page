@@ -312,16 +312,16 @@ export default class Register extends OmniElement {
                       value="${this.email}"
                       @input="${(e) => this.handleEmailChange(e)}"
                     />
-                    <!-- <span class="icon is-small is-left">
+                    <span class="icon is-small is-left">
                     <omni-icon
                       class="is-size-1"
                       style="fill:var(--color-shark)"
-                      icon-id="omni:informative:community"
+                      icon-id="omni:object:activation"
                     ></omni-icon>
-                  </span> -->
-                  <span class="icon is-small is-left">
+                  </span>
+                  <!-- <span class="icon is-small is-left">
         <i class="fas fa-info-circle"></i>
-      </span>
+      </span> -->
                 </p>
                     <div class="is-flex">
                       ${this.errors.email

@@ -65,9 +65,18 @@ export default class Home extends OmniElement {
               </div>
             </omni-toolbar>
           </header>
-          <div  class="pt-1 pl-1">
-            <h1>bubu</h1>
+          <div class="card m-5">
+          <header class="card-header">
+            <div class="card-header-title">
+            </div>
+          </header>
+          <div
+            class="card-content pb-1 pt-1 pl-0 pr-0 is-flex is-align-items-center is-justify-content-center"
+            style="background-color: rgb(245, 248, 251) !important;height: 46rem;"
+          >
+          <h1 class=" is-size-1">Welcome to the homepage</h1>
           </div>
+        </div>
           <omni-dialog
             id="modal"
             modalType="modal"
