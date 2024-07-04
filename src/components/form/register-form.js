@@ -415,7 +415,7 @@ export default class Register extends OmniElement {
 
                   <div class=" pt-5">
                     <button
-                      class="button is-link"
+                      class="button is-link has-text-white"
                       ?disabled="${!this.isFormValid}"
                       @click="${() => this.handleRegister()}"
                     >
@@ -433,8 +433,7 @@ export default class Register extends OmniElement {
         id="toast"
         modalType="toast"
         modalStyle="success"
-        .toastTimeOut=${3000}
-        @close-dialog="${this.closeForm}">
+        .toastTimeOut=${3000}>
         <p slot="content">You have successfully registered!</p>
       </omni-dialog>
       </omni-style>

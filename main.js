@@ -3,7 +3,7 @@ import { Router } from "@vaadin/router";
 
 import "./src/components/form/login-form.js"
 import "./src/components/form/register-form.js"
-import "./src/components/form/home-page.js"
+import "./src/components/form/home.js"
 
 import { OmniElement, html } from "omni-ui";
 export default class Main extends OmniElement {
@@ -41,7 +41,6 @@ export default class Main extends OmniElement {
   render() {
     return html`
       <omni-style>
-        <!-- Main router outlet -->
         <div id="outlet"></div>
       </omni-style>
     `;
